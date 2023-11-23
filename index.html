@@ -1,0 +1,350 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Age calculator</title>
+		<style>
+*{
+box-sizing: border-box;
+padding:0;
+margin:0;
+}
+			.input,.date{
+			  margin:10px 0;
+				padding:10px;
+				font-size:18px;
+				display:block;letter-spacing:2px
+			}
+			input:focus{
+				outline:none;
+				/*padding:10px;
+				height:30px;
+				font-size:18px;*/
+			}
+			button {
+				height:30px;
+				padding:10px 20px 30px;
+				background-color:green;
+  font-size:18px;margin:0 0 20px 0;
+				transition: 0.5s;
+			}button:hover {
+				opacity:0.8;
+				
+			}
+.load,.loada{
+margin:10px 20px;
+width:40px;
+height:40px;
+color:#fff;
+border-radius:5px;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+overflow:hidden;mix-blend-mode:overlay;
+}
+.loada span{
+position:absolute;
+border-radius:50%;
+width:100%;
+height:100%;
+border:4px solid #f1f1f1;
+
+animation: rat var(--sec) linear infinite;
+}
+
+.loada span:nth-child(1){
+border-right-color:red;
+--sec:0.8s;
+}
+
+.loada span:nth-child(3){
+border-color:transparent transparent transparent green;
+background-color:transparent;
+--sec:1.3s;
+}
+.loada span:nth-child(2){
+border-color:blue transparent transparent transparent;
+background-color:transparent;
+--sec:1.8s;
+}
+@keyframes rat{
+0%{
+transform:rotate(0deg)
+}
+100%{
+transform:rotate(360deg)
+}
+
+}
+body{
+padding:20px;
+}
+	  h3{
+	    margin:0 0 15px 0
+	  }
+	  @media screen and (max-width:400px){
+    .inp{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+  }
+		</style>
+	</head>
+	<body>
+	  <h2>Age calculator</h2>
+<input type="date" class="input" placeholder="Enter birth date">
+<button class="bun" type="button">Calculate</button>
+<div class="result">
+</div>
+<div class="inp">
+</div>
+<script>
+
+
+let present = new Date('Aug 31 2020');
+let past = new Date('Aug 31 2010');
+let days  = present - past;
+console.log((days/365)+' days'); 
+console.log(Math.abs(new Date(days)/(1000*60*60*24)));
+
+/*
+console.log(years+' Years',month+' months',day+' days'); // gives full year.
+console.log(birth); // gives number of month starting from 0.
+//console.log(now.getDate()); // gives date.
+console.log(birth.getMonth(),'month'); //  gives day with Monday as 0 and so on.
+console.log(now.getHours()); // gives hours in 24 hour format.
+console.log(now.getMinutes()); //  gives minutes
+console.log(now.getSeconds()); // gives seconds
+console.log(now.getTime());*/
+			const res = document.querySelector('.result');
+			const email = document.querySelector('.email');
+			const date = document.querySelector('input[type="date"]');
+			/*const button = document.querySelector('.bun')
+			button.addEventListener('click',()=>{
+
+				let collect = '';
+				const mach = "@.";
+				for(let i=0;i<mach.length;i++) {
+					for(let j=0;j<email.value.length;j++){
+						if(email.value[j]===mach[i]) {
+							collect+=email.value[j]
+						}
+					}
+					
+				}
+				console.log(collect)
+				if(name.value.length<3){
+					alert('Invalid name');name.value='';
+					name.style.border ='2px solid red';
+				}else if(pass.value.length <8) {
+					pass.style.border ='2px solid red';name.style.border ='2px solid green';
+					alert('Enter at least 8 character');
+				} else {
+					alert('Success');name.value='';
+					pass.style.border ='2px solid green';
+					name.style.border ='2px solid green';
+				}
+			});*/
+			function fun(arr,size) {
+				let arr2 =[];
+				let copy;
+				for(let i=0;i<arr.length;i+=size) {
+					copy = arr.slice(i,i+size);
+					arr2.push(copy);
+				}
+				console.log(arr2);
+			}
+fun([1,2,3,4,5,6,7,8,9,10,8],4);
+
+			function fun2(str,size) {
+				let format;let ext;
+				if(str.indexOf('.')===-1) {
+					format =str;ext='';
+				}else{
+					format = String(str.slice(0,str.indexOf('.')))
+					ext=String(str.slice(str.indexOf('.')))
+				}
+				
+				let str2 = String(format).split('');
+				let res=[];
+				let copy;let str3 =[];
+				let resu ='';let com='';
+
+				for(let i=str2.length-1;i>=0;i--) {
+					str3.push(str[i])
+
+				}
+				for(let i=0;i<str3.length;i+=size) {
+					copy = str3.slice(i,i+size);
+					res.push(copy.join(''));
+				}
+				resu = res.join(',');
+				for(let i=resu.length-1;i>=0;i--) {
+					com+=resu[i];
+				}
+				
+				return com+ext;
+			}
+console.log(fun2('20000000000',3))
+let num=499;
+console.log((num/100).toFixed(2))
+function fun3(pases) {
+	let final ='';
+	let total =0;
+	for(let i=0;i<pases.length;i++) {
+		if(pases[i]!==','){
+			final +=pases[i];
+		}
+	}
+	total= Number(final)*2;
+	return String(total);
+}
+function fun4(pases) {
+	let final ='';
+	for(let i=0;i<pases.length;i++) {
+		if(pases[i]!==' '){
+			final +=pases[i];
+		}
+	}
+	//total= Number(final)*2;
+	return String(final);
+}
+const button = document.querySelector('.bun')
+button.addEventListener('click',()=>{
+let birth = new Date(date.value)
+let now = new Date();
+let years = now.getFullYear()-birth.getFullYear();
+let month=now.getMonth()-birth.getMonth()
+let day =now.getDate()-birth.getDate()
+let lastDay = new Date(birth.getFullYear(), birth.getMonth() + 1, 0);
+
+res.innerHTML=''
+if(!date.value) {
+alert('date input is empty')
+date.style.border="2px solid red"
+return
+}
+date.style.border="1px solid grey"
+date.value='';
+if(now.getFullYear()<birth.getFullYear()) {
+alert('invalid date')
+return
+}
+if(now.getFullYear()===birth.getFullYear()) {
+	if(now.getMonth()<birth.getMonth()) {
+	alert('invalid date')
+	return
+}
+	if(now.getMonth()===birth.getMonth()) {
+		if(now.getDate()<birth.getDate()){
+			alert('invalid date')
+			return
+		}
+	}
+
+
+}
+if(month<0) {
+years-=1
+month+=12
+}
+if(day<0) {
+month-=1
+if(month<0) {
+years-=1
+month+=12
+}
+
+day+=lastDay.getDate()
+}
+let yer = (years)?years +'<span style="font-weight:normal;padding:0 4px"> Years</span>': '';
+let mont = (month)?month+'<span style="font-weight:normal;padding:0 4px"> Months</span>' : '';
+let da = (day)?day+'<span style="font-weight:normal;padding:0 4px"> Days</span>' : '';
+let age = `${yer} ${mont} ${da}`
+res.innerHTML=`<h4>Birth date: ${birth.getDate()}/${birth.getMonth()+1}/${birth.getFullYear()}</h4><h3>Age: ${age}</h3>`
+
+})
+let le =fun3(fun2('8000.08',3))
+console.log(le)
+let format = String(le.indexOf('.'))
+console.log(format, 'format')
+console.log(fun2(le,3))
+function card(input,size) {
+	let str2 = input.split('');
+	let res=[];
+	let copy;
+	let resu ='';
+
+	for(let i=0;i<str2.length;i+=size) {
+		copy = str2.slice(i,i+size);
+		res.push(copy.join(''));
+	}
+	resu = res.join(' ');
+	
+	
+	return resu;
+}let final;
+/*email.addEventListener('input',()=>{
+	 final= fun4(email.value)
+	 
+	if(final.length>16) {
+		alert('Enough boy!!!');
+		final = final.slice(0,16);email.value = card(final,4)
+	}else{
+		email.value = card(final,4)
+		
+	}
+
+	
+})*/
+async function fetchData() {
+try{
+console.log('Loading...')
+document.querySelector('.inp').innerHTML=`<div class="loada">
+<span></span>
+<span></span>
+<span></span>
+</div>`
+let data = (await fetch('https://jsonplaceholder.typicode.com/users')).json()
+let result = await data
+console.log('Done')
+let html='<h2>Fetching data from API</h2>'
+result.forEach(val=>{
+html+=`
+<input type="text" class="input" value="${val.name}" placeholder="name" disabled>
+<input type="email" class="input" value="${val.email}" placeholder="mohbob@gmail.com" disabled>
+<input type="password" class="input" value="${val.phone}" placeholder="Enter password" disabled>
+  <div style="width:100%;margin:20px 0;height:5px;background-color:#000;border-radius:1px"></div>
+`
+})
+document.querySelector('.inp').innerHTML=html;
+console.log(result)
+console.log(typeof result)
+}catch(err){
+console.log('Something went wrong')
+}
+} 
+async function fetchData1(id) {
+try{
+let data = await fetch('https://jsonplaceholder.typicode.com/users/'+id)
+let result = await data.json()
+
+if(result.length<1){
+console.log('There is no such id of: '+id)
+return
+}
+console.log(result.name)
+console.log(Array.isArray(result))
+}
+ catch(err){
+console.log('Something went wrong')
+}}
+fetchData()
+
+		</script>
+	</body>
+	
+
+</html>
